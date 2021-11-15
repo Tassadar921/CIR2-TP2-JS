@@ -44,10 +44,50 @@ export class Tableau {
     return idline
     };
 
+  getIdlinebyPreparationTime = (value)=>{
+    let idline;
+    for (const line of meal)
+    {
+        if(line.preparationTime==name)
+        {
+            idline = line.idMeal
+        }
+    }
+    return idline
+  }
+
+  getIdlinebyTotalPrice = (value)=>{
+    let idline;
+    for (const line of meal)
+    {
+        if(line.totalPrice==name)
+        {
+            idline = line.idMeal;
+        }
+    }
+    return idline;
+  }
+
+  
+  getIdlinebyCategory=(value,category)=>{
+    let result;
+    switch (category) {
+      case 0:
+        result=this.getIdlinebyName(value);  
+        break;
+      case 1:
+        result=this.getIdlinebyPreparationTime(value);  
+        break;
+       case 2:
+        result=this.getIdlinebyTotalPrice(value);  
+        break;
+      default:
+        break;
+    }   
+    return result;
+  }
+
   name =()=>{
-
-    //console.log(this.getIdlineofName('Brownies'));
-
      let nom=[];
      let line=[];
      let tab=[];
@@ -60,7 +100,7 @@ export class Tableau {
      for(let i=0;i<nom.length;i++)
      {
        line=[];
-       const k=this.getIdlinebyName(nom[i]);
+       const k=this.getIdlinebyCategory(nom[i],0);
        line[0]=meal[k].name;
        line[1]=meal[k].preparationTime;
        //const tmp = meal[k].ingredients;

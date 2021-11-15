@@ -8,5 +8,5 @@ let meal = [
     { idMeal:'6', name: 'Pancakes', preparationTime: '14', ingredients: ['21','8','20','5','2'], preparationPrice: '5' },
     { idMeal:'7', name: 'Brownies', preparationTime: '45', ingredients: ['5','8','9','10','11','20'], preparationPrice: '8' },
 ];
-
-export {meal};
+let meal_copy=meal;
+export {meal_copy as meal};

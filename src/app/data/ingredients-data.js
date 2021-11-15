@@ -24,4 +24,5 @@ let ingredients = [
     {idIng:'22',name:'Oignons', local:'1', prix:'0.50'},
 ];
 
-export{ingredients};
+let ingredients_copy=ingredients
+export{ingredients_copy as ingredients};
