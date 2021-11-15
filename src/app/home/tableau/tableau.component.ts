@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {meal} from 'src/app/data/meal-data.js';
 import {ingredients} from 'src/app/data/ingredients-data.js';
-import {Tableau} from 'src/app/shared/tableau';
+import {Tableau} from "../../shared/tableau";
 
 @Component({
   selector: 'app-tableau',
@@ -15,10 +15,7 @@ export class TableauComponent implements OnInit {
   )
   {}
 
-  ngOnInit() {
-    const tab = this.tableau.build(1);
-    //console.log(tab);
-  }
+  ngOnInit() {}
 
   choix = () => {
     if(document.getElementById('choix').hidden)

@@ -112,7 +112,7 @@ export class Tableau {
        line[2]=this.transformIngredients(meal[k].ingredients);
        tab.push(line);
      }
-     console.log(tab);
+     tab.unshift(['Nom du plat', 'Temps de préparation (min)', 'Ingrédients', 'Coût total (€)']);
      return tab;
   };
 
