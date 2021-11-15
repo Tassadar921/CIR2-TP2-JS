@@ -13,7 +13,7 @@ export class Tableau {
     //console.log(tab);
     for(let i=0;i<tab.length;i++)
     {
-        //tab[i] = ingredients[tab[i]].name;
+        tab[i] = ingredients[tab[i]].name;
     }
     //console.log(tab);
     return tab;
@@ -39,7 +39,7 @@ export class Tableau {
         if(line.name==name)
         {
             idline = line.idMeal
-        } 
+        }
     }
     return idline
     };
@@ -57,18 +57,19 @@ export class Tableau {
      }
 
      nom=nom.sort();
-     for(let i=0;i<nom.length;i++) {
-       const k=this.getIdlinebyName(nom[i].name);
-        console.log(k)
-        console.log(meal[k]);
+     for(let i=0;i<nom.length;i++)
+     {
+       line=[];
+       const k=this.getIdlinebyName(nom[i]);
        line[0]=meal[k].name;
        line[1]=meal[k].preparationTime;
-       const tmp = meal[k].ingredients;
+       //const tmp = meal[k].ingredients;
        line[2]=this.transformIngredients(meal[k].ingredients);
        //line[3]=this.totalPrice(meal[k].preparationPrice, tmp);
-
-       tab[i]=line;
+       console.log('line : ' + line);
+       tab.push(line);
      }
+     console.log(tab);
      return tab;
   };
 
