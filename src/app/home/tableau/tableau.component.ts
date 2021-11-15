@@ -15,7 +15,10 @@ export class TableauComponent implements OnInit {
   )
   {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const tab = this.tableau.build(1);
+    console.log(tab);
+  }
 
   choix = () => {
     if(document.getElementById('choix').hidden)

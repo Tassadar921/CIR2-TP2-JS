@@ -13,40 +13,38 @@ export class Tableau {
     //console.log(tab);
     for(let i=0;i<tab.length;i++)
     {
-        tab[i] = ingredients[tab[i]].name;
+        //tab[i] = ingredients[tab[i]].name;
     }
-    //console.log(tab);
     return tab;
   };
 
-  totalPrice = (plat, tab)=>{
-    let price = plat;
-
-    //console.log('test');
+  totalPrice = (plat, k)=>{
+    const tab = meal[k].ingredients;
+    let price = Number(plat);
+    //console.log(meal);
     //console.log(tab);
 
     for(let i=0;i<tab.length;i++) {
-        price += ingredients[tab[i]].prix;
+      console.log(ingredients[tab[i]]);
+       price += Number(ingredients[tab[i]].prix);
     }
     return price;
   };
 
-  getIdlinebyName = (name)=>
+  getIdlinebyName =(name)=>
   {
     let idline;
     for (const line of meal)
     {
         if(line.name==name)
         {
-            idline = line.idMeal
+            idline = line.idMeal;
         }
     }
-    return idline
+    return idline;
     };
 
   name =()=>{
-
-    //console.log(this.getIdlineofName('Brownies'));
 
      let nom=[];
      let line=[];
@@ -60,13 +58,19 @@ export class Tableau {
      for(let i=0;i<nom.length;i++)
      {
        line=[];
+
        const k=this.getIdlinebyName(nom[i]);
+       const tmp = meal[k].ingredients;
+
+       //console.log(1, meal);
        line[0]=meal[k].name;
+       //console.log(2, meal);
        line[1]=meal[k].preparationTime;
-       //const tmp = meal[k].ingredients;
+       //console.log(3, meal);
+       line[3]=this.totalPrice(meal[k].preparationPrice, k);
+       //console.log(4, meal);
        line[2]=this.transformIngredients(meal[k].ingredients);
-       //line[3]=this.totalPrice(meal[k].preparationPrice, tmp);
-       console.log('line : ' + line);
+       //console.log(5, meal);
        tab.push(line);
      }
      console.log(tab);
