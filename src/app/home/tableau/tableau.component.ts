@@ -16,8 +16,8 @@ export class TableauComponent implements OnInit {
   {}
 
   ngOnInit() {
-    const tab = this.tableau.build(1);
-    console.log(tab);
+    console.log(this.tableau.build(1));
+    //console.log(tab);
   }
 
   choix = () => {

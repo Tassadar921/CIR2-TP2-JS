@@ -10,12 +10,12 @@ import {ingredients} from 'src/app/data/ingredients-data.js';
 export class Tableau {
 
   transformIngredients =(tab)=>{
-    //console.log(tab);
+    let tmp = [];
     for(let i=0;i<tab.length;i++)
     {
-        //tab[i] = ingredients[tab[i]].name;
+        tmp[i] = ingredients[tab[i]].name;
     }
-    return tab;
+    return tmp;
   };
 
   totalPrice = (plat, k)=>{
@@ -25,7 +25,6 @@ export class Tableau {
     //console.log(tab);
 
     for(let i=0;i<tab.length;i++) {
-      console.log(ingredients[tab[i]]);
        price += Number(ingredients[tab[i]].prix);
     }
     return price;
@@ -56,7 +55,6 @@ export class Tableau {
     return idline
   }
 
-<<<<<<< HEAD
   getIdlinebyTotalPrice = (value)=>{
     let idline;
     for (const line of meal)
@@ -69,28 +67,29 @@ export class Tableau {
     return idline;
   }
 
-  
+
   getIdlinebyCategory=(value,category)=>{
     let result;
     switch (category) {
       case 0:
-        result=this.getIdlinebyName(value);  
+        result=this.getIdlinebyName(value);
         break;
+
       case 1:
-        result=this.getIdlinebyPreparationTime(value);  
+        result=this.getIdlinebyPreparationTime(value);
         break;
+
        case 2:
-        result=this.getIdlinebyTotalPrice(value);  
+        result=this.getIdlinebyTotalPrice(value);
         break;
+
       default:
         break;
-    }   
+    }
     return result;
   }
 
   name =()=>{
-=======
->>>>>>> e4a21c915eba1cc4748f173538b2d7cc9a2c10cd
      let nom=[];
      let line=[];
      let tab=[];
@@ -103,23 +102,14 @@ export class Tableau {
      for(let i=0;i<nom.length;i++)
      {
        line=[];
-<<<<<<< HEAD
        const k=this.getIdlinebyCategory(nom[i],0);
-=======
 
-       const k=this.getIdlinebyName(nom[i]);
        const tmp = meal[k].ingredients;
 
-       //console.log(1, meal);
->>>>>>> e4a21c915eba1cc4748f173538b2d7cc9a2c10cd
        line[0]=meal[k].name;
-       //console.log(2, meal);
        line[1]=meal[k].preparationTime;
-       //console.log(3, meal);
        line[3]=this.totalPrice(meal[k].preparationPrice, k);
-       //console.log(4, meal);
        line[2]=this.transformIngredients(meal[k].ingredients);
-       //console.log(5, meal);
        tab.push(line);
      }
      console.log(tab);
