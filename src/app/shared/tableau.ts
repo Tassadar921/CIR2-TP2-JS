@@ -138,7 +138,7 @@ export class Tableau {
 
     switch(first){
       case 1:
-        tab = this.name();
+        return this.name();
         break;
 
       case 2:
