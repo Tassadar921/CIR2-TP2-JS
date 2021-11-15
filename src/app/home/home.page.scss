@@ -25,3 +25,24 @@
 #container a {
   text-decoration: none;
 }
+
+#choix {
+  border:none;
+  width:190px;
+  padding:5px;
+}
+
+#choix li button {
+  color:#8D8988;
+  border:transparent;
+  background-color:transparent;
+}
+
+#choix li button:hover {
+  color:white;
+}
+
+ion-button {
+  --background: #827B7A;
+  border-radius:5px;
+}
