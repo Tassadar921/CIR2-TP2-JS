@@ -67,11 +67,6 @@ export class Tableau {
     return idline;
   };
 
-  getIdlinebyNbrIngredients = (value, cmeal)=>{
-
-  };
-
-
   getIdMealbyCategory=(value,cmeal,category)=>{
     let result;
     switch (category)
@@ -86,10 +81,6 @@ export class Tableau {
 
        case 2:
         result=this.getIdlinebyTotalPrice(value,cmeal);
-        break;
-
-      case 3:
-        result=this.getIdlinebyNbrIngredients(value,cmeal);
         break;
 
       default:
