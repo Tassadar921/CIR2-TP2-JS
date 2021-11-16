@@ -19,4 +19,9 @@ export class HomePage {
     document.getElementById('choix').hidden=true;
     this.tab=this.tableau.build(1);
   }
+
+  display = (n) =>
+  {
+    this.tab=this.tableau.build(n);
+  }
 }
