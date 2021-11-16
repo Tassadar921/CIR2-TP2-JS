@@ -17,8 +17,10 @@ export class Tableau {
     return tmp;
   };
 
-  totalPrice = (plat, k)=>{
-    const tab = meal[k].ingredients;
+  totalPrice = (plat, cmeal, k)=>{
+    //console.log('totalPrice', cmeal[k]);
+    //console.log('totalPrice k :', k)
+    const tab = cmeal[k].ingredients;
     let price = Number(plat);
 
     for(let i=0;i<tab.length;i++) {
@@ -27,12 +29,13 @@ export class Tableau {
     return price;
   };
 
-  getIdlinebyName =(name)=>
+  getIdlinebyName =(value, cmeal)=>
   {
     let idline;
-    for (const line of meal)
+    //console.log('on recherche', value, 'dans', cmeal);
+    for (const line of cmeal)
     {
-        if(line.name==name)
+        if(line.name==value)
         {
             idline = line.idMeal;
         }
@@ -40,11 +43,11 @@ export class Tableau {
     return idline;
     };
 
-  getIdlinebyPreparationTime = (value)=>{
+  getIdlinebyPreparationTime = (value, cmeal)=>{
     let idline;
-    for (const line of meal)
+    for (const line of cmeal)
     {
-        if(line.preparationTime==name)
+        if(line.preparationTime==value)
         {
             idline = line.idMeal
         }
@@ -52,11 +55,11 @@ export class Tableau {
     return idline
   };
 
-  getIdlinebyTotalPrice = (value)=>{
+  getIdlinebyTotalPrice = (value, cmeal)=>{
     let idline;
-    for (const line of meal)
+    for (const line of cmeal)
     {
-        if(line.totalPrice==name)
+        if(line.totalPrice==value)
         {
             idline = line.idMeal;
         }
@@ -64,29 +67,29 @@ export class Tableau {
     return idline;
   };
 
-  getIdlinebyNbrIngredients = (value)=>{
+  getIdlinebyNbrIngredients = (value, cmeal)=>{
 
   };
 
 
-  getIdlinebyCategory=(value,category)=>{
+  getIdMealbyCategory=(value,cmeal,category)=>{
     let result;
     switch (category)
     {
       case 0:
-        result=this.getIdlinebyName(value);
+        result=this.getIdlinebyName(value,cmeal);
         break;
 
       case 1:
-        result=this.getIdlinebyPreparationTime(value);
+        result=this.getIdlinebyPreparationTime(value,cmeal);
         break;
 
        case 2:
-        result=this.getIdlinebyTotalPrice(value);
+        result=this.getIdlinebyTotalPrice(value,cmeal);
         break;
 
       case 3:
-        result=this.getIdlinebyNbrIngredients(value);
+        result=this.getIdlinebyNbrIngredients(value,cmeal);
         break;
 
       default:
@@ -95,11 +98,30 @@ export class Tableau {
     return result;
   };
 
+  getLineByIdmeal=(idMeal, cmeal)=>{
+    let result;
+    for(const line of cmeal){
+      if (line.idMeal==idMeal) {
+        result = line;
+      }
+    }
+    return result;
+  };
+
+  display = (tab) =>{
+    console.log('**************** Nouvel affichage ****************');
+    for(let i=0;i<tab.length;i++)
+    {
+      console.log(tab[i]);
+    }
+  };
+
   name =()=>{
-     let cmeal=meal;
-     let nom=[];
-     let line=[];
-     let tab=[];
+     const cmeal=meal;
+     //this.display(cmeal);
+     let nom=[], line=[];
+     const tab=[];
+     let k, lineK;
 
      for(let i=0;i<cmeal.length;i++)
      {
@@ -107,17 +129,28 @@ export class Tableau {
      }
 
      nom=nom.sort();
+     //console.log('nom : ', nom);
+
      for(let i=0;i<nom.length;i++)
      {
        line=[];
-       const k=this.getIdlinebyCategory(nom[i],0);
+       //console.log('a', nom[i]);
+       //this.display(cmeal);
+       k=this.getIdMealbyCategory(nom[i],cmeal, 0);
+       //console.log('k :', k);
+       lineK=this.getLineByIdmeal(k, cmeal);
+        //console.log(lineK);
 
-       const tmp = cmeal[k].ingredients;
+         line[0] = lineK.name;
+         line[1] = lineK.preparationTime;
+         line[3] = this.totalPrice(lineK.preparationPrice, cmeal, cmeal.indexOf(lineK));
+         //console.log('lineK:', lineK);
+         line[2] = this.transformIngredients(lineK.ingredients);
 
-       line[0]=cmeal[k].name;
-       line[1]=cmeal[k].preparationTime;
-       line[3]=this.totalPrice(cmeal[k].preparationPrice, k);
-       line[2]=this.transformIngredients(cmeal[k].ingredients);
+       //console.log('On delete',cmeal[k]);
+       //console.log('on delete', lineK, 'd\'indice', cmeal.indexOf(lineK));
+       cmeal.splice(cmeal.indexOf(lineK),1);
+       //this.display(cmeal);
        tab.push(line);
      }
      tab.unshift(['Nom du plat', 'Temps de préparation (min)', 'Ingrédients', 'Coût total (€)']);
