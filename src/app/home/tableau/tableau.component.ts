@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {meal} from 'src/app/data/meal-data.js';
 import {ingredients} from 'src/app/data/ingredients-data.js';
-import {Tableau} from "../../shared/tableau";
+import {Tableau} from '../../shared/tableau';
 
 @Component({
   selector: 'app-tableau',

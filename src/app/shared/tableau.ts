@@ -1,4 +1,3 @@
-import {OnInit} from '@angular/core';
 import {Injectable} from '@angular/core';
 import {meal} from 'src/app/data/meal-data.js';
 import {ingredients} from 'src/app/data/ingredients-data.js';
@@ -10,7 +9,7 @@ import {ingredients} from 'src/app/data/ingredients-data.js';
 export class Tableau {
 
   transformIngredients =(tab)=>{
-    let tmp = [];
+    const tmp = [];
     for(let i=0;i<tab.length;i++)
     {
         tmp[i] = ingredients[tab[i]].name;
@@ -21,8 +20,6 @@ export class Tableau {
   totalPrice = (plat, k)=>{
     const tab = meal[k].ingredients;
     let price = Number(plat);
-    //console.log(meal);
-    //console.log(tab);
 
     for(let i=0;i<tab.length;i++) {
        price += Number(ingredients[tab[i]].prix);
@@ -53,7 +50,7 @@ export class Tableau {
         }
     }
     return idline
-  }
+  };
 
   getIdlinebyTotalPrice = (value)=>{
     let idline;
@@ -65,12 +62,17 @@ export class Tableau {
         }
     }
     return idline;
-  }
+  };
+
+  getIdlinebyNbrIngredients = (value)=>{
+
+  };
 
 
   getIdlinebyCategory=(value,category)=>{
     let result;
-    switch (category) {
+    switch (category)
+    {
       case 0:
         result=this.getIdlinebyName(value);
         break;
@@ -83,18 +85,23 @@ export class Tableau {
         result=this.getIdlinebyTotalPrice(value);
         break;
 
+      case 3:
+        result=this.getIdlinebyNbrIngredients(value);
+        break;
+
       default:
         break;
     }
     return result;
-  }
+  };
 
   name =()=>{
      let nom=[];
      let line=[];
      let tab=[];
 
-     for(let i=0;i<meal.length;i++) {
+     for(let i=0;i<meal.length;i++)
+     {
        nom[i] = meal[i].name;
      }
 
@@ -116,19 +123,28 @@ export class Tableau {
      return tab;
   };
 
-
-  ingr=()=>{
+  time=()=>{
     let tab=[];
+    let line=[];
     return tab;
   };
 
-  time=()=>{
+  ingr=()=>{
     let tab=[];
+    let line=[];
+    let nbrIngr=[];
+
+    for(let i=0;i<meal.length;i++)
+    {
+      nbrIngr[i]=meal[i].ingredients.length;
+    }
+    console.log(nbrIngr);
     return tab;
   };
 
   price=()=>{
     let tab=[];
+    let line=[];
     return tab;
   };
 
@@ -142,15 +158,15 @@ export class Tableau {
         break;
 
       case 2:
-          tab = this.ingr();
+        tab = this.time();
         break;
 
       case 3:
-          tab = this.time();
+        tab = this.ingr();
         break;
 
       case 4:
-          tab = this.price();
+        tab = this.price();
         break;
     }
   }
