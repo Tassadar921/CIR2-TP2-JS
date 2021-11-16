@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Tableau} from '../../shared/tableau';
-import {HomePage} from '../home.page';
+import {meal} from '../../data/meal-data';
 
 @Component({
   selector: 'app-tableau',
@@ -9,12 +9,17 @@ import {HomePage} from '../home.page';
 })
 export class TableauComponent implements OnInit {
 
+  public tab = [];
+
   constructor(
-    private home: HomePage,
+    private tableau: Tableau,
   )
   {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    document.getElementById('choix').hidden=true;
+    this.tab=this.tableau.build(1, meal);
+  }
 
   choix = () => {
     if(document.getElementById('choix').hidden)
@@ -22,6 +27,18 @@ export class TableauComponent implements OnInit {
     else {document.getElementById('choix').hidden=true;}
   };
 
-  choice = (cas) => this.home.display(cas);
+  choice = (cas) => {
+    console.log('tableau.meal :', meal)
+    //this.tab=this.tableau.build(cas, meal);
+    //this.display(this.tab);
 
+  }
+
+  display = (tab) =>{
+    console.log('**************** Nouvel affichage ****************');
+    for(let i=0;i<tab.length;i++)
+    {
+      console.log(tab[i]);
+    }
+  };
 }

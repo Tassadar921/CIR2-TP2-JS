@@ -104,8 +104,10 @@ export class Tableau {
     }
   };
 
-  name =()=>{
-     const cmeal=meal;
+  name =(réf)=>{
+     console.log('réf :');
+     this.display(réf);
+     const cmeal= réf;
      let nom=[], line=[];
      const tab=[];
      let k, lineK;
@@ -135,15 +137,16 @@ export class Tableau {
      return tab;
   };
 
-  time=()=>{
+  time=(réf)=>{
     let tab=[];
     let line=[];
     return tab;
   };
 
-  price=()=>{
+  price=(réf)=>{
     console.log('price');
-    const cmeal=meal;
+    let cmeal= [];
+    cmeal=meal;
     let prix=[], line=[];
     const tab=[];
     let k, lineK;
@@ -154,7 +157,7 @@ export class Tableau {
     }
 
     prix=prix.sort();
-
+/*
     for(let i=0;i<prix.length;i++)
     {
       line=[];
@@ -171,24 +174,28 @@ export class Tableau {
     }
     tab.unshift(['Coût total (€)', 'Temps de préparation (min)', 'Ingrédients', 'Nom du plat']);
     this.display(tab);
+    */
     return tab;
   };
 
-  build = (first) => {
+  build = (first, réf) => {
     console.clear();
     let tab=[];
 
     switch(first){
       case 1:
-        return this.name();
+        tab=this.name(réf);
+        return tab;
         break;
 
       case 2:
-        tab = this.time();
+        console.log('temps');
+        tab = this.time(réf);
         break;
 
       case 3:
-        tab = this.price();
+        console.log('prix total');
+        tab = this.price(réf);
         break;
     }
   }

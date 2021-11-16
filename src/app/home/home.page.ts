@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Tableau} from '../shared/tableau';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +7,7 @@ import {Tableau} from '../shared/tableau';
 })
 export class HomePage {
 
-  public tab;
+  constructor() {}
 
-  constructor(
-    private tableau: Tableau
-  ) {}
-
-  ngOnInit()
-  {
-    document.getElementById('choix').hidden=true;
-    this.tab=this.tableau.build(1);
-  }
-
-  display = (n) =>
-  {
-    this.tab=this.tableau.build(n);
-  }
+  ngOnInit() {}
 }
