@@ -18,7 +18,7 @@ export class TableauComponent implements OnInit {
 
   ngOnInit() {
     document.getElementById('choix').hidden=true;
-    this.tab=this.tableau.build(1, meal);
+    this.tab=this.tableau.build(1);
   }
 
   choix = () => {
@@ -28,11 +28,11 @@ export class TableauComponent implements OnInit {
   };
 
   choice = (cas) => {
-    console.log('tableau.meal :', meal)
-    //this.tab=this.tableau.build(cas, meal);
+    console.clear();
+    this.tab=this.tableau.build(cas);
     //this.display(this.tab);
 
-  }
+  };
 
   display = (tab) =>{
     console.log('**************** Nouvel affichage ****************');

@@ -104,10 +104,10 @@ export class Tableau {
     }
   };
 
-  name =(réf)=>{
-     console.log('réf :');
-     this.display(réf);
-     const cmeal= réf;
+  name =()=>{
+
+    const cmeal=meal.slice();
+
      let nom=[], line=[];
      const tab=[];
      let k, lineK;
@@ -129,7 +129,6 @@ export class Tableau {
          line[1] = lineK.preparationTime;
          line[3] = this.totalPrice(lineK.preparationPrice, cmeal, cmeal.indexOf(lineK));
          line[2] = this.transformIngredients(lineK.ingredients);
-
        cmeal.splice(cmeal.indexOf(lineK),1);
        tab.push(line);
      }
@@ -137,13 +136,13 @@ export class Tableau {
      return tab;
   };
 
-  time=(réf)=>{
+  time=()=>{
     let tab=[];
     let line=[];
     return tab;
   };
 
-  price=(réf)=>{
+  price=()=>{
     console.log('price');
     let cmeal= [];
     cmeal=meal;
@@ -178,25 +177,24 @@ export class Tableau {
     return tab;
   };
 
-  build = (first, réf) => {
+  build = (first) => {
     console.clear();
     let tab=[];
-
     switch(first){
       case 1:
-        tab=this.name(réf);
-        return tab;
+        tab=this.name();
         break;
 
       case 2:
         console.log('temps');
-        tab = this.time(réf);
+        tab = this.time();
         break;
 
       case 3:
         console.log('prix total');
-        tab = this.price(réf);
+        tab = this.price();
         break;
     }
-  }
+    return tab;
+  };
 }
