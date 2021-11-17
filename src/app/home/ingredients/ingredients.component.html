@@ -1,0 +1,29 @@
+<ion-content id="container">
+  <ion-button shape="round" style="--background:#827B7A" (click)="ing()">Infos supplémentaires ingrédients</ion-button>
+
+<ion-grid id="ingr">
+
+  <ion-row>
+    <ion-col class="title">
+      <button class="title" (click)="choice(1)">Nom</button>
+    </ion-col>
+    <ion-col class="title">
+      <button class="title" (click)="choice(2)">Local ?</button>
+    </ion-col>
+    <ion-col class="title">
+      <button class="title" (click)="choice(3)">Prix</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngFor="let col of ingr">
+    <ion-col style="font-weight:bold"> {{col.name}} </ion-col>
+
+    <ion-col style="font-style:italic" *ngIf="col.local==1"> Oui </ion-col>
+    <ion-col style="font-style:italic" *ngIf="col.local==0"> Non </ion-col>
+
+    <ion-col style="font-weight:bold"> {{col.prix}} </ion-col>
+  </ion-row>
+
+</ion-grid>
+
+</ion-content>

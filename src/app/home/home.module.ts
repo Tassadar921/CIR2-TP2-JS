@@ -4,7 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
-import {TableauComponent} from "./tableau/tableau.component";
+import {TableauComponent} from './tableau/tableau.component';
+import {IngredientsComponent} from './ingredients/ingredients.component';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -15,6 +16,6 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, TableauComponent]
+  declarations: [HomePage, TableauComponent, IngredientsComponent]
 })
 export class HomePageModule {}

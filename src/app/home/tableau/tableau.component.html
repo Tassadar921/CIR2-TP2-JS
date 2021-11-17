@@ -1,18 +1,36 @@
 <ion-grid>
+
   <ion-row>
-    <ion-col> <button class="" (click)="choice(1)">Nom du plat</button> </ion-col>
-    <ion-col> <button class="" (click)="choice(2)">Temps de préparation :</button> </ion-col>
-    <ion-col> <button class="">Ingrédients</button> </ion-col>
-    <ion-col> <button class="" (click)="choice(3)">Prix total</button> </ion-col>
+
+    <ion-col>
+      <button class="title" (click)="choice(1)">Nom du plat</button>
+      <ion-icon name="caret-up-outline" *ngIf="name==1"></ion-icon>
+      <ion-icon name="caret-down-outline" *ngIf="name==2"></ion-icon>
+    </ion-col>
+
+    <ion-col>
+      <button class="title" (click)="choice(2)">Temps de préparation :</button>
+      <ion-icon name="caret-up-outline" *ngIf="time==1"></ion-icon>
+      <ion-icon name="caret-down-outline" *ngIf="time==2"></ion-icon>
+    </ion-col>
+
+    <ion-col class="title">
+      Ingrédients
+    </ion-col>
+
+    <ion-col>
+      <button class="title" (click)="choice(3)">Prix total</button>
+      <ion-icon name="caret-up-outline" *ngIf="price==1"></ion-icon>
+      <ion-icon name="caret-down-outline" *ngIf="price==2"></ion-icon>
+    </ion-col>
+
   </ion-row>
+
   <ion-row *ngFor="let col of tab" class="grid">
-    <ion-col style="font-weight:bold"> {{col[0]}} </ion-col>
-    <ion-col style="font-style:italic"> {{col[1]}} </ion-col>
-    <ion-col style="font-style:italic"> {{col[2]}} </ion-col>
-    <ion-col style="font-weight:bold"> {{col[3]}} </ion-col>
+    <ion-col style="font-weight:bold"> <p>{{col[0]}} </p></ion-col>
+    <ion-col style="font-style:italic"> <p>{{col[1]}} </p></ion-col>
+    <ion-col style="font-style:italic"> <p>{{col[2]}} </p></ion-col>
+    <ion-col style="font-weight:bold"> <p>{{col[3]}} </p></ion-col>
   </ion-row>
+
 </ion-grid>
-
-<ion-icon name="arrow-dropdown"></ion-icon>
-
-<ion-button shape="round" style="--background:#827B7A" (click)="ingr()">Infos supplémentaires ingrédients</ion-button>

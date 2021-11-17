@@ -127,7 +127,7 @@ export class Tableau {
      {
        line=[];
 
-       if(this.switchName==0) {
+       if(this.switchName==1) {
          k = this.getIdMealbyCategory(nom[i], cmeal, 0);
        }
        else{
