@@ -1,11 +1,10 @@
-<ion-button shape="round" style="--background:#827B7A" (click)="choix()">Tri par :</ion-button>
-<nav id="choix">
-  <li><button (click)="choice(1)">Nom</button></li>
-  <li><button (click)="choice(2)">Temps de préparation</button></li>
-  <li><button (click)="choice(3)">Coût de préparation</button></li>
-</nav>
-
 <ion-grid>
+  <ion-row>
+    <ion-col> <button class="" (click)="choice(1)">Nom du plat</button> </ion-col>
+    <ion-col> <button class="" (click)="choice(2)">Temps de préparation :</button> </ion-col>
+    <ion-col> <button class="">Ingrédients</button> </ion-col>
+    <ion-col> <button class="" (click)="choice(3)">Prix total</button> </ion-col>
+  </ion-row>
   <ion-row *ngFor="let col of tab" class="grid">
     <ion-col style="font-weight:bold"> {{col[0]}} </ion-col>
     <ion-col style="font-style:italic"> {{col[1]}} </ion-col>

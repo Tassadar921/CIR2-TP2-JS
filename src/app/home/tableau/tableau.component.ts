@@ -21,12 +21,6 @@ export class TableauComponent implements OnInit {
     this.tab=this.tableau.build(1);
   }
 
-  choix = () => {
-    if(document.getElementById('choix').hidden)
-    {document.getElementById('choix').hidden=false;}
-    else {document.getElementById('choix').hidden=true;}
-  };
-
   choice = (cas) => {
     console.clear();
     this.tab=this.tableau.build(cas);

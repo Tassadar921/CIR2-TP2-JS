@@ -56,7 +56,7 @@ export class Tableau {
     let idline;
     for (const line of cmeal)
     {
-        if(line.totalPrice==value)
+        if(line.total==value)
         {
             idline = line.idMeal;
         }
@@ -132,7 +132,6 @@ export class Tableau {
        cmeal.splice(cmeal.indexOf(lineK),1);
        tab.push(line);
      }
-     tab.unshift(['Nom du plat', 'Temps de préparation (min)', 'Ingrédients', 'Coût total (€)']);
      return tab;
   };
 
@@ -161,21 +160,41 @@ export class Tableau {
       cmeal.splice(cmeal.indexOf(lineK),1);
       tab.push(line);
     }
-    tab.unshift(['Nom du plat', 'Temps de préparation (min)', 'Ingrédients', 'Coût total (€)']);
     return tab;
   };
 
   price=()=>{
-    console.log('price');
     let cmeal=meal.slice();
 
-    let prix=[], line=[];
+    let line=[];
     const tab=[];
-    let k, lineK, tmp;
+    let k, lineK;
+    let price=[];
 
-      cmeal=cmeal.map( (data, index) => (
-        {...data, totalPrice:this.totalPrice(cmeal[index].preparationPrice, cmeal, cmeal.indexOf(cmeal[index]))}
-      ));
+    cmeal=cmeal.map( (data, index) => (
+      {...data, total:this.totalPrice(cmeal[index].preparationPrice, cmeal, cmeal.indexOf(cmeal[index]))}
+    ));
+
+    for(let i=0; i<cmeal.length;i++){
+      price[i] = cmeal[i].total;
+    }
+    price.sort(function(a,b){
+      return a-b;
+    });
+    this.display(price);
+    for(let i=0; i<meal.length;i++){
+      line=[];
+      k=this.getIdMealbyCategory(price[i],cmeal, 2);
+      lineK=this.getLineByIdmeal(k, cmeal);
+
+      line[0] = lineK.name;
+      line[1] = lineK.preparationTime;
+      line[3] = this.totalPrice(lineK.preparationPrice, cmeal, cmeal.indexOf(lineK));
+      line[2] = this.transformIngredients(lineK.ingredients);
+      cmeal.splice(cmeal.indexOf(lineK),1);
+      tab.push(line);
+      this.display(cmeal);
+    }
     return tab;
   };
 
