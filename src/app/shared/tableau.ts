@@ -8,6 +8,10 @@ import {ingredients} from 'src/app/data/ingredients-data.js';
 
 export class Tableau {
 
+  public switchName;
+  public switchTime;
+  public switchPrice;
+
   transformIngredients =(tab)=>{
     const tmp = [];
     for(let i=0;i<tab.length;i++)
@@ -122,7 +126,14 @@ export class Tableau {
      for(let i=0;i<nom.length;i++)
      {
        line=[];
-       k=this.getIdMealbyCategory(nom[i],cmeal, 0);
+
+       if(this.switchName==0) {
+         k = this.getIdMealbyCategory(nom[i], cmeal, 0);
+       }
+       else{
+         k = this.getIdMealbyCategory(nom[nom.length-i-1], cmeal, 0);
+       }
+
        lineK=this.getLineByIdmeal(k, cmeal);
 
          line[0] = lineK.name;
@@ -132,14 +143,24 @@ export class Tableau {
        cmeal.splice(cmeal.indexOf(lineK),1);
        tab.push(line);
      }
+    if(this.switchName==0) {
+      this.switchName=1;
+      this.switchTime=0;
+      this.switchPrice=0;
+    }
+    else{this.switchName=0;}
+
      return tab;
   };
 
   time=()=>{
     const tab=[];
     const temps=[];
-    let lineK, line;
+    let line=[];
+    let lineK, k;
+
     const cmeal = meal.slice();
+
     for(let i=0; i<cmeal.length;i++){
       temps[i] = cmeal[i].preparationTime;
     }
@@ -149,9 +170,15 @@ export class Tableau {
 
     for(let i=0; i<meal.length;i++){
       line=[];
-      const k=this.getIdMealbyCategory(temps[i],cmeal, 1);
+
+      if(this.switchTime==0) {
+        k = this.getIdMealbyCategory(temps[i], cmeal, 1);
+      }
+      else{
+        k = this.getIdMealbyCategory(temps[temps.length-i-1], cmeal, 1);
+      }
+
       lineK=this.getLineByIdmeal(k, cmeal);
-      //console.log(lineK);
 
       line[0] = lineK.name;
       line[1] = lineK.preparationTime;
@@ -160,16 +187,23 @@ export class Tableau {
       cmeal.splice(cmeal.indexOf(lineK),1);
       tab.push(line);
     }
+    if(this.switchTime==0) {
+      this.switchName=0;
+      this.switchTime=1;
+      this.switchPrice=0;
+    }
+    else{this.switchTime=0;}
+
     return tab;
   };
 
   price=()=>{
-    let cmeal=meal.slice();
-
-    let line=[];
     const tab=[];
-    let k, lineK;
-    let price=[];
+    const price=[];
+    let line=[];
+    let lineK, k;
+
+    let cmeal = meal.slice();
 
     cmeal=cmeal.map( (data, index) => (
       {...data, total:this.totalPrice(cmeal[index].preparationPrice, cmeal, cmeal.indexOf(cmeal[index]))}
@@ -178,13 +212,21 @@ export class Tableau {
     for(let i=0; i<cmeal.length;i++){
       price[i] = cmeal[i].total;
     }
+
     price.sort(function(a,b){
       return a-b;
     });
-    this.display(price);
+
     for(let i=0; i<meal.length;i++){
       line=[];
-      k=this.getIdMealbyCategory(price[i],cmeal, 2);
+
+      if(this.switchPrice==0) {
+        k = this.getIdMealbyCategory(price[i], cmeal, 2);
+      }
+      else{
+        k = this.getIdMealbyCategory(price[price.length-i-1], cmeal, 2);
+      }
+
       lineK=this.getLineByIdmeal(k, cmeal);
 
       line[0] = lineK.name;
@@ -193,8 +235,14 @@ export class Tableau {
       line[2] = this.transformIngredients(lineK.ingredients);
       cmeal.splice(cmeal.indexOf(lineK),1);
       tab.push(line);
-      this.display(cmeal);
     }
+    if(this.switchPrice==0) {
+      this.switchName=0;
+      this.switchTime=0;
+      this.switchPrice=1;
+    }
+    else{this.switchPrice=0;}
+
     return tab;
   };
 
@@ -207,12 +255,10 @@ export class Tableau {
         break;
 
       case 2:
-        console.log('temps');
         tab = this.time();
         break;
 
       case 3:
-        console.log('prix total');
         tab = this.price();
         break;
     }

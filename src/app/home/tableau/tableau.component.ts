@@ -17,7 +17,9 @@ export class TableauComponent implements OnInit {
   {}
 
   ngOnInit() {
-    document.getElementById('choix').hidden=true;
+    this.tableau.switchName=0;
+    this.tableau.switchTime=0;
+    this.tableau.switchPrice=0;
     this.tab=this.tableau.build(1);
   }
 
