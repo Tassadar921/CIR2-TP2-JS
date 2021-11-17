@@ -1,34 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import {ingredients} from '../../data/ingredients-data';
-import {TriIngredients} from '../../shared/ingredients/tri-ingredients';
 
 @Component({
   selector: 'app-ingredients',
   templateUrl: './ingredients.component.html',
   styleUrls: ['./ingredients.component.scss'],
 })
+
 export class IngredientsComponent implements OnInit {
 
   public ingr=ingredients;
-  constructor(
-    private tri = TriIngredients,
-  ) {}
+
+  constructor() {}
 
   ngOnInit() {
     this.ing();
   }
 
   ing = () => {
-    let ingr = document.getElementById('ingr')
-    if(ingr.style.display=='none'){ingr.style.display='block';}
+    const ingr = document.getElementById('ingr');
+    if(ingr.style.display ==='none'){ingr.style.display='block';}
     else {ingr.style.display='none';}
   };
 
-  choice = (cas) =>{
-    switch(cas){
-      case 1:
-        this.ingr=this.tri.
-    }
+  choice = (cas) => {
+    console.log('On voulait faire un tri en fonction de ce sur quoi on clique comme le tableau des recettes mais vu ');
+    console.log('l\'heure on va s\'arrêter là le code est dans la class tri si vous voulez y jeter un coup d\'oeil on');
+    console.log(('a de gros problèmes d\'intégration de la page et Nicolas vient de me dire que c\'est pas une classe dont j\'ai besoin'));
   };
-
-  }
+}

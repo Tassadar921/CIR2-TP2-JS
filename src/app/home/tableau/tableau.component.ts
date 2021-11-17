@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Tableau} from '../../shared/tableau/tableau';
-import {meal} from '../../data/meal-data';
 
 @Component({
   selector: 'app-tableau',
   templateUrl: './tableau.component.html',
   styleUrls: ['./tableau.component.scss'],
 })
+
 export class TableauComponent implements OnInit {
 
   public tab = [];
@@ -31,19 +31,24 @@ export class TableauComponent implements OnInit {
   choice = (cas) => {
     console.clear();
     this.tab=this.tableau.build(cas);
-    switch(cas){
+
+    switch(cas)
+    {
+
       case 1:
         if(this.name==2) {this.name=1;}
         else {this.name+=1;}
         this.time=0;
         this.price=0;
         break;
+
       case 2:
         this.name=0;
         if(this.time==2) {this.time=1;}
         else {this.time+=1;}
         this.price=0;
         break;
+
       case 3:
         this.name=0;
         this.time=0;
@@ -52,13 +57,5 @@ export class TableauComponent implements OnInit {
         break;
     }
 
-  };
-
-  display = (tab) =>{
-    console.log('**************** Nouvel affichage ****************');
-    for(let i=0;i<tab.length;i++)
-    {
-      console.log(tab[i]);
-    }
   };
 }

@@ -5,9 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import {TableauComponent} from './tableau/tableau.component';
-import {IngredientsComponent} from './ingredients/ingredients.component';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { IngredientsComponent} from './ingredients/ingredients.component';
 
 @NgModule({
   imports: [

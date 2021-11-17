@@ -1,12 +1,6 @@
-import {Injectable} from '@angular/core';
-import {ingredients} from 'src/app/data/ingredients-data.js';
+import {ingredients} from '../../data/ingredients-data';
 
-@Injectable({
-  providedIn: 'root'
-})
-
-
-export class TriIngredients {
+export class Tri {
 
   public local=false;
   public price=false;
@@ -98,5 +92,5 @@ export class TriIngredients {
 
   display = () => {
     console.log('test');
-  }
+  };
 }
