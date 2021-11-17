@@ -8,8 +8,10 @@
 <ion-grid>
   <ion-row *ngFor="let col of tab" class="grid">
     <ion-col style="font-weight:bold"> {{col[0]}} </ion-col>
-    <ion-col> {{col[1]}} </ion-col>
-    <ion-col> {{col[2]}} </ion-col>
-    <ion-col> {{col[3]}} </ion-col>
+    <ion-col style="font-style:italic"> {{col[1]}} </ion-col>
+    <ion-col style="font-style:italic"> {{col[2]}} </ion-col>
+    <ion-col style="font-weight:bold"> {{col[3]}} </ion-col>
   </ion-row>
 </ion-grid>
+
+<ion-button shape="round" style="--background:#827B7A" (click)="ingr()">Infos supplémentaires ingrédients</ion-button>

@@ -137,43 +137,45 @@ export class Tableau {
   };
 
   time=()=>{
-    let tab=[];
-    let line=[];
-    return tab;
-  };
-
-  price=()=>{
-    console.log('price');
-    let cmeal= [];
-    cmeal=meal;
-    let prix=[], line=[];
     const tab=[];
-    let k, lineK;
-
-    for(let i=0;i<cmeal.length;i++)
-    {
-      prix[i] = cmeal[i].preparationPrice;
+    const temps=[];
+    let lineK, line;
+    const cmeal = meal.slice();
+    for(let i=0; i<cmeal.length;i++){
+      temps[i] = cmeal[i].preparationTime;
     }
+    temps.sort(function(a,b){
+      return a-b;
+    });
 
-    prix=prix.sort();
-/*
-    for(let i=0;i<prix.length;i++)
-    {
+    for(let i=0; i<meal.length;i++){
       line=[];
-      k=this.getIdMealbyCategory(prix[i],cmeal, 2);
+      const k=this.getIdMealbyCategory(temps[i],cmeal, 1);
       lineK=this.getLineByIdmeal(k, cmeal);
+      //console.log(lineK);
 
       line[0] = lineK.name;
       line[1] = lineK.preparationTime;
       line[3] = this.totalPrice(lineK.preparationPrice, cmeal, cmeal.indexOf(lineK));
       line[2] = this.transformIngredients(lineK.ingredients);
-
       cmeal.splice(cmeal.indexOf(lineK),1);
       tab.push(line);
     }
-    tab.unshift(['Coût total (€)', 'Temps de préparation (min)', 'Ingrédients', 'Nom du plat']);
-    this.display(tab);
-    */
+    tab.unshift(['Nom du plat', 'Temps de préparation (min)', 'Ingrédients', 'Coût total (€)']);
+    return tab;
+  };
+
+  price=()=>{
+    console.log('price');
+    let cmeal=meal.slice();
+
+    let prix=[], line=[];
+    const tab=[];
+    let k, lineK, tmp;
+
+      cmeal=cmeal.map( (data, index) => (
+        {...data, totalPrice:this.totalPrice(cmeal[index].preparationPrice, cmeal, cmeal.indexOf(cmeal[index]))}
+      ));
     return tab;
   };
 
